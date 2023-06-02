@@ -5,17 +5,18 @@ import platformdirs
 
 from guidance.llms.caches import Cache
 
+def user_cache_dir(appname):
+    if "AWS_EXECUTION_ENV" in os.environ:
+        return "/tmp"
+    return platformdirs.user_cache_dir(appname)
 
 class DiskCache(Cache):
     """DiskCache is a cache that uses diskcache lib."""
-    def _init_(self, llm_name: str):
-        cache_dir = (
-            "/tmp"
-            if "AWS_EXECUTION_ENV" in os.environ
-            else platformdirs.user_cache_dir("guidance")
-        )
+    def init(self, llm_name: str):
         self._diskcache = diskcache.Cache(
-            os.path.join(cachedir, f"{llm_name}.diskcache")
+            os.path.join(
+                user_cache_dir("guidance"), f"{llm_name}.diskcache"
+            )
         )
 
     def __getitem__(self, key: str) -> str:
