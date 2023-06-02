@@ -12,7 +12,7 @@ def user_cache_dir(appname):
 
 class DiskCache(Cache):
     """DiskCache is a cache that uses diskcache lib."""
-    def init(self, llm_name: str):
+    def __init__(self, llm_name: str):
         self._diskcache = diskcache.Cache(
             os.path.join(
                 user_cache_dir("guidance"), f"{llm_name}.diskcache"
