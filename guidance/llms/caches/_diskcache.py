@@ -8,11 +8,14 @@ from guidance.llms.caches import Cache
 
 class DiskCache(Cache):
     """DiskCache is a cache that uses diskcache lib."""
-    def __init__(self, llm_name: str):
+    def _init_(self, llm_name: str):
+        cache_dir = (
+            "/tmp"
+            if "AWS_EXECUTION_ENV" in os.environ
+            else platformdirs.user_cache_dir("guidance")
+        )
         self._diskcache = diskcache.Cache(
-            os.path.join(
-                platformdirs.user_cache_dir("guidance"), f"_{llm_name}.diskcache"
-            )
+            os.path.join(cachedir, f"{llm_name}.diskcache")
         )
 
     def __getitem__(self, key: str) -> str:
