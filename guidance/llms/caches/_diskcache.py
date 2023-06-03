@@ -9,9 +9,7 @@ from guidance.llms.caches import Cache
 class DiskCache(Cache):
     """DiskCache is a cache that uses diskcache lib."""
     def __init__(self, llm_name: str):
-        print("Inside my guidance")
-        print(llm_name)
-        self._diskcache = diskcache.Cache()
+        pass
     def __getitem__(self, key: str) -> str:
         return self._diskcache[key]
 
@@ -19,7 +17,7 @@ class DiskCache(Cache):
         self._diskcache[key] = value
 
     def __contains__(self, key: str) -> bool:
-        return key in self._diskcache
+        return False
     
     def clear(self):
         self._diskcache.clear()
