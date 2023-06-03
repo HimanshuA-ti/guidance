@@ -11,12 +11,7 @@ class DiskCache(Cache):
     def __init__(self, llm_name: str):
         print("Inside my guidance")
         print(llm_name)
-        cache_dir = "/tmp/cache/"+ f"{llm_name}.diskcache"
-        print(cache_dir)
-        self._diskcache = diskcache.Cache(
-            cache_dir
-        )
-
+        self._diskcache = diskcache.Cache()
     def __getitem__(self, key: str) -> str:
         return self._diskcache[key]
 
