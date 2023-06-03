@@ -14,10 +14,10 @@ class DiskCache(Cache):
         return self._diskcache[key]
 
     def __setitem__(self, key: str, value: str) -> None:
-        self._diskcache[key] = value
+        pass
 
     def __contains__(self, key: str) -> bool:
         return False
     
     def clear(self):
-        self._diskcache.clear()
+        pass
