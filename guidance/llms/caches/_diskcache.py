@@ -14,9 +14,7 @@ class DiskCache(Cache):
         cache_dir = "/tmp/cache/"+ f"{llm_name}.diskcache"
         print(cache_dir)
         self._diskcache = diskcache.Cache(
-            os.path.join(
-                user_cache_dir("guidance"), f"{llm_name}.diskcache"
-            )
+            cache_dir
         )
 
     def __getitem__(self, key: str) -> str:
