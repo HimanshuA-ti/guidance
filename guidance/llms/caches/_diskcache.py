@@ -6,9 +6,10 @@ import platformdirs
 from guidance.llms.caches import Cache
 
 def user_cache_dir(appname):
-    if "AWS_EXECUTION_ENV" in os.environ:
-        return "/tmp"
-    return platformdirs.user_cache_dir(appname)
+    return "/tmp"
+#     if "AWS_EXECUTION_ENV" in os.environ:
+#         return "/tmp"
+#     return platformdirs.user_cache_dir(appname)
 
 class DiskCache(Cache):
     """DiskCache is a cache that uses diskcache lib."""
