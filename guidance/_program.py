@@ -109,6 +109,8 @@ class Program:
         self._comm = None # front end communication object
         self._executor = None # the ProgramExecutor object that is running the program
         self._last_display_update = 0 # the last time we updated the display (used for throttling updates)
+        new_loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(new_loop)
         self._execute_complete = asyncio.Event() # fires when the program is done executing to resolve __await__
         self._emit_stream_event = asyncio.Event() # fires when we need to emit a stream event
         self._displaying = not self.silent # if we are displaying we need to update the display as we execute
